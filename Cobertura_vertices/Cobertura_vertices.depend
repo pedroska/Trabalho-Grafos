@@ -1,4 +1,15 @@
 # depslib dependency file v1.0
-1189868556 source:c:\users\pedro\desktop\grafos\cobertura_vertices\main.cpp
+1403832651 source:c:\users\pedro\desktop\grafos\cobertura_vertices\main.cpp
 	<iostream>
+	"include/Grafo.h"
+	"include/Vertice.h"
+
+1403847411 c:\users\pedro\desktop\grafos\cobertura_vertices\include\grafo.h
+	<vector>
+	"Vertice.h"
+
+1403847411 c:\users\pedro\desktop\grafos\cobertura_vertices\include\vertice.h
+	<vector>
+	<iomanip>
+	<stdio.h>
 

@@ -3,6 +3,8 @@
 #include <vector>
 #include "Vertice.h"
 
+using namespace std;
+
 class Grafo
 {
     public:
