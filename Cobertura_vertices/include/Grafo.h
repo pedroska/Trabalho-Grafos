@@ -27,7 +27,7 @@ class Grafo
 
         void add_no(int pos, Vertice* v)
         {
-            vertices[pos] = v;
+            vertices[pos] = *v;
         }
 
     protected:

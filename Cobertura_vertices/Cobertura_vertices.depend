@@ -13,3 +13,17 @@
 	<iomanip>
 	<stdio.h>
 
+1404278855 source:c:\users\pedro\documents\github\trabalho-grafos\cobertura_vertices\main.cpp
+	<iostream>
+	"include/Grafo.h"
+	"include/Vertice.h"
+
+1404278385 c:\users\pedro\documents\github\trabalho-grafos\cobertura_vertices\include\grafo.h
+	<vector>
+	"Vertice.h"
+
+1404275054 c:\users\pedro\documents\github\trabalho-grafos\cobertura_vertices\include\vertice.h
+	<vector>
+	<iomanip>
+	<stdio.h>
+

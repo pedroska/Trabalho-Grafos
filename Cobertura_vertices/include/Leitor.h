@@ -17,7 +17,6 @@ class Leitor
 
 private:
     int numeroArestas;
-    float alfa;
     int linhaAtual;
 
 protected:
@@ -45,7 +44,7 @@ public:
             int incidente = atoi(s[s.size()-1].c_str());
             int no = atoi(s[s.size()-2].c_str());
 
-            if(grafo->getVertices()->Vertice()[no] == NULL)
+            if( &grafo->getVertices()[no] == NULL)
             {
                 Vertice *vertice = new Vertice();
                 grafo->add_no(no , vertice);
