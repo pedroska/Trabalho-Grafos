@@ -8,16 +8,31 @@ using namespace std;
 class Grafo
 {
     public:
-        Grafo(int n)
+
+        Grafo()
         {
-            vertices.resize(n);
+
         }
         virtual ~Grafo();
 
+        Vertice* getVertices()
+        {
+            return vertices;
+        }
+
+        void iniciaVertices(int n)
+        {
+            vertices = new Vertice[n];
+        }
+
+        void add_no(int pos, Vertice* v)
+        {
+            vertices[pos] = v;
+        }
 
     protected:
     private:
-        vector<Vertice*> vertices;
+        Vertice* vertices;
 };
 
 #endif // GRAFO_H

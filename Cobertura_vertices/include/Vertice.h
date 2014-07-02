@@ -46,9 +46,14 @@ class Vertice
             id = value;
         }
 
-        void add_vertice(int* value)
+        void add_adjacente(int* value)
         {
             adjacentes.push_back(value);
+        }
+
+        float calculaPeso()
+        {
+            return 0;
         }
 
     protected:

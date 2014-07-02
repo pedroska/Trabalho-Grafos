@@ -1,8 +1,8 @@
 #include <iostream>
 #include "include/Grafo.h"
 #include "include/Vertice.h"
+#include "include/Leitor.h"
 
-using namespace std;
 
 int main()
 {
