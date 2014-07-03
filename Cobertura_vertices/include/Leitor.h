@@ -32,12 +32,16 @@ public:
     {
         if(linhaAtual == 1)
         {
-            vector<string> s = StringUtils::split(str, ' ');
-            numeroArestas = atoi(s[s.size()-1].c_str());
-            grafo->iniciaVertices(atoi(s[s.size()-2].c_str()));
+            return;
         }
 
-        if (linhaAtual > 1 && linhaAtual < 1 + numeroArestas){
+        int no = atoi(s[s.size()-2].c_str());
+        int incidente = atoi(s[s.size()-1].c_str());
+
+        grafo->add_no()
+
+
+        /*if (linhaAtual > 1 && linhaAtual < 1 + numeroArestas){
 
             vector<string> s = StringUtils::split(str, ' ');
 
@@ -54,11 +58,13 @@ public:
 
             grafo->getVertices()[no].setGrau(grafo->getVertices()[no].getGrau() + 1);
             grafo->getVertices()[no].setPeso(grafo->getVertices()[no].calculaPeso());
-        }
+        }*/
     }
+
 
     void lerArquivo(char arquivo[], Grafo *grafo)
     {
+        cout<<arquivo;
 
         ifstream file(arquivo);
         string str;
@@ -71,6 +77,7 @@ public:
             linhaAtual++;
         }
 
-    };
+    }
+};
 
 #endif // LEITOR_H_INCLUDED

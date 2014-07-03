@@ -1,38 +1,40 @@
 #ifndef GRAFO_H
 #define GRAFO_H
-#include <vector>
 #include "Vertice.h"
 
 using namespace std;
 
 class Grafo
 {
-    public:
+public:
+    Grafo(){};
 
-        Grafo()
-        {
+    Vertice* getVertices()
+    {
+        return vertices;
+    }
 
-        }
-        virtual ~Grafo();
+    void iniciaVertices(int n)
+    {
+        vertices = new Vertice();//[n];
+    }
 
-        Vertice* getVertices()
-        {
-            return vertices;
-        }
+    void add_no(int pos, int adjacente)
+    {
+        //vertices[pos] = *v;
+         for(size_t i=0; i<vertices.size(); i++)
+         {
+            if(vertices[i]->id == pos){
+                vertices[i]->add_adjacente(adjacente);
+                return;
+            }
+         }
 
-        void iniciaVertices(int n)
-        {
-            vertices = new Vertice[n];
-        }
 
-        void add_no(int pos, Vertice* v)
-        {
-            vertices[pos] = *v;
-        }
+    }
 
-    protected:
-    private:
-        Vertice* vertices;
+private:
+    Vertice* vertices;
 };
 
 #endif // GRAFO_H

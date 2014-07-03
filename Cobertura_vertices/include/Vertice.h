@@ -1,67 +1,64 @@
 #ifndef VERTICE_H
 #define VERTICE_H
 #include <vector>
-#include <iomanip>
 #include <stdio.h>
 
 using namespace std;
 
 class Vertice
 {
-    public:
-        Vertice();
-        virtual ~Vertice();
+public:
+    Vertice(){};
 
-        int getPeso()
-        {
-            return peso;
-        }
+    int getPeso()
+    {
+        return peso;
+    }
 
-        int getGrau()
-        {
-            return grau;
-        }
+    int getGrau()
+    {
+        return grau;
+    }
 
-        int getId()
-        {
-            return id;
-        }
+    int getId()
+    {
+        return id;
+    }
 
-        vector<int*> getAdjacentes()
-        {
-            return adjacentes;
-        }
+    vector<int*> getAdjacentes()
+    {
+        return adjacentes;
+    }
 
+    void setPeso(int value)
+    {
+        peso = value;
+    }
+    void setGrau(int value)
+    {
+        grau = value;
+    }
+    void setId(int value)
+    {
+        id = value;
+    }
 
-        void setPeso(int value)
-        {
-            peso = value;
-        }
-        void setGrau(int value)
-        {
-            grau = value;
-        }
-        void setId(int value)
-        {
-            id = value;
-        }
+    void add_adjacente(int* value)
+    {
+        adjacentes.push_back(value);
+    }
 
-        void add_adjacente(int* value)
-        {
-            adjacentes.push_back(value);
-        }
+    float calculaPeso()
+    {
+        return 0;
+    }
 
-        float calculaPeso()
-        {
-            return 0;
-        }
-
-    protected:
-    private:
-        int grau;
-        int peso;
-        int id;
-        vector<int*> adjacentes;
+protected:
+private:
+    int grau;
+    int peso;
+    int id;
+    vector<int*> adjacentes;
 };
 
 #endif // VERTICE_H
