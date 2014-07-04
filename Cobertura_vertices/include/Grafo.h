@@ -19,18 +19,29 @@ public:
         vertices = new Vertice();//[n];
     }
 
-    void add_no(int pos, int adjacente)
+    void add_no(int pos, int* value)
     {
-        //vertices[pos] = *v;
+        if(&vertices[pos-1] == NULL)
+        {
+                Vertice* v = new Vertice();
+                v->setPeso(v->calculaPeso());
+                v->setId(pos);
+                v->setGrau(0);
+
+                //vertices[pos-1] = *v;
+                cout<<v<<endl;
+        }
+
+
+        //vertices[pos-1].add_adjacente(value);
+        /*
          for(size_t i=0; i<vertices.size(); i++)
          {
             if(vertices[i]->id == pos){
                 vertices[i]->add_adjacente(adjacente);
                 return;
             }
-         }
-
-
+         }*/
     }
 
 private:

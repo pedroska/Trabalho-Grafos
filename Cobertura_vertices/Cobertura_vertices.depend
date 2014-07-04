@@ -27,3 +27,27 @@
 	<iomanip>
 	<stdio.h>
 
+1404434284 source:/home/pedro/Downloads/debian-stable/amd64/Trabalho-Grafos/Cobertura_vertices/main.cpp
+	<iostream>
+	"include/Grafo.h"
+	"include/Leitor.h"
+
+1404436098 /home/pedro/Downloads/debian-stable/amd64/Trabalho-Grafos/Cobertura_vertices/include/Grafo.h
+	"Vertice.h"
+
+1404435337 /home/pedro/Downloads/debian-stable/amd64/Trabalho-Grafos/Cobertura_vertices/include/Vertice.h
+	<vector>
+	<stdio.h>
+
+1404435875 /home/pedro/Downloads/debian-stable/amd64/Trabalho-Grafos/Cobertura_vertices/include/Leitor.h
+	<iostream>
+	<string>
+	<sstream>
+	<iterator>
+	<fstream>
+	<vector>
+	<cstdlib>
+	"StringUtils.h"
+
+1404433320 /home/pedro/Downloads/debian-stable/amd64/Trabalho-Grafos/Cobertura_vertices/include/StringUtils.h
+

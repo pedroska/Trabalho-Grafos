@@ -35,10 +35,13 @@ public:
             return;
         }
 
+        vector<string> s = StringUtils::split(str, ' ');
+
         int no = atoi(s[s.size()-2].c_str());
         int incidente = atoi(s[s.size()-1].c_str());
 
-        grafo->add_no()
+        grafo->add_no(no, &incidente);
+        //&Grafo.getVertices()[no-1]).add_adjacente(incidente);
 
 
         /*if (linhaAtual > 1 && linhaAtual < 1 + numeroArestas){
@@ -76,7 +79,6 @@ public:
             processaLinha(str,grafo);
             linhaAtual++;
         }
-
     }
 };
 
