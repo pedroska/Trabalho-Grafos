@@ -48,9 +48,9 @@ public:
         adjacentes.push_back(value);
     }
 
-    float calculaPeso()
+    float calculaPeso(int value)
     {
-        return 0;
+        return (value%200)+1;
     }
 
 protected:
