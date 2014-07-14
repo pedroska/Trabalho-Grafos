@@ -40,7 +40,9 @@
 		<Unit filename="include/PLS.h" />
 		<Unit filename="include/StringUtils.h" />
 		<Unit filename="include/Vertice.h" />
+		<Unit filename="include/util.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/util.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

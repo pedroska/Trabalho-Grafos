@@ -26,32 +26,27 @@ public:
     Leitor()
     {
         linhaAtual = 1;
+        numeroArestas = 0;
     }
 
     void processaLinha(string str, Grafo *grafo)
     {
         if(linhaAtual == 1)
         {
-            //vector<string> s = StringUtils::split(str, ' ');
-            //int tam = atoi(s[s.size()-2].c_str());
+            vector<string> s = StringUtils::split(str, ' ');
+            int tam = atoi(s[2].c_str());
+            grafo->inicializaVertice(tam);
+
             return;
         }
-
 
         vector<string> s = StringUtils::split(str, ' ');
 
         int no = atoi(s[s.size()-2].c_str());
         int incidente = atoi(s[s.size()-1].c_str());
 
-        grafo->add(no);
         grafo->add_adj(no, &incidente);
-
-        //grafo->add_no(no, &incidente);
-        //grafo->add_no(no);
-
-
-        //grafo->getVertices()[no-1].add_adjacente(&incidente);
-        //&Grafo.getVertices()[no-1]).add_adjacente(incidente);
+        grafo->add_adj(incidente, &no);
     }
 
 

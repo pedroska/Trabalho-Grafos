@@ -7,7 +7,9 @@
 class Heuristica
 {
     public:
-        Heuristica(){};
+        Heuristica(int heuristica){
+            heuristica = heuristica;
+        };
 
         void mergeSort(vector<Vertice*> v, int inicio, int fim, int escolhaHeur)
         {
@@ -33,7 +35,6 @@ class Heuristica
               if( escolhaHeuristica(aux[i], escolhaHeur) <= escolhaHeuristica(aux[j], escolhaHeur)) v[k] = aux[i++];
               else v[k] = aux[j--];
            }
-           delete(&aux);
         }
 
         float escolhaHeuristica(Vertice *v, int escolha)
@@ -46,8 +47,17 @@ class Heuristica
             return x;
         }
 
+        void setHeuristica(int heuristica){
+        heuristica = heuristica;
+    }
+
+    int getHeuristica(){
+        return heuristica;
+    }
+
     protected:
     private:
+        int heuristica;
 };
 
 #endif // HEURISTICA_H

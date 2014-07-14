@@ -51,22 +51,22 @@
 
 1404433320 /home/pedro/Downloads/debian-stable/amd64/Trabalho-Grafos/Cobertura_vertices/include/StringUtils.h
 
-1404631925 source:/home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/main.cpp
+1405301410 source:/home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/main.cpp
 	<iostream>
 	"include/Grafo.h"
 	"include/Leitor.h"
-	"PLS.h"
+	"Cover.h"
 
-1404631943 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Grafo.h
+1405300089 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Grafo.h
 	"Vertice.h"
 	<vector>
 	<algorithm>
 
-1404607968 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Vertice.h
+1405300089 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Vertice.h
 	<vector>
 	<stdio.h>
 
-1404608083 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Leitor.h
+1405259120 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Leitor.h
 	<iostream>
 	<string>
 	<sstream>
@@ -78,13 +78,37 @@
 
 1404584618 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/StringUtils.h
 
-1404631908 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/PLS.h
+1405301099 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/PLS.h
 	"Heuristica.h"
 	"Grafo.h"
+	"util.h"
 	<vector>
 
-1404630084 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Heuristica.h
+1405300119 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Heuristica.h
 	<vector>
 	"Grafo.h"
 	"Vertice.h"
+
+1404626843 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/util.h
+	<ctime>
+	<unistd.h>
+	<sys/times.h>
+	<vector>
+
+1404626841 source:/home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/src/util.cpp
+	"util.h"
+	<climits>
+	<cmath>
+	<cstdlib>
+	<cstdio>
+	<sys/timeb.h>
+	<sys/resource.h>
+	<vector>
+	<iostream>
+
+1405302493 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Cover.h
+	"Heuristica.h"
+	"Grafo.h"
+	"util.h"
+	<vector>
 

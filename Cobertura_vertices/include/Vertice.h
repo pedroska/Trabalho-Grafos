@@ -15,7 +15,7 @@ public:
         return peso;
     }
 
-    int getGrau()
+    float getGrau()
     {
         return grau;
     }
@@ -25,16 +25,11 @@ public:
         return id;
     }
 
-    vector<int*> getAdjacentes()
-    {
-        return adjacentes;
-    }
-
     void setPeso(int value)
     {
         peso = value;
     }
-    void setGrau(int value)
+    void setGrau(float value)
     {
         grau = value;
     }
@@ -43,9 +38,13 @@ public:
         id = value;
     }
 
+    vector<int> getAdjacents(){
+        return adjacents;
+    }
+
     void add_adjacente(int* value)
     {
-        adjacentes.push_back(value);
+        adjacents.push_back(*value);
     }
 
     float calculaPeso(int value)
@@ -55,10 +54,10 @@ public:
 
 protected:
 private:
-    int grau;
+    float grau;
     int peso;
     int id;
-    vector<int*> adjacentes;
+    vector<int> adjacents;
 };
 
 #endif // VERTICE_H
