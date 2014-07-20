@@ -14,6 +14,24 @@ public:
     vector<Vertice*> coberturaVertice(Grafo* grafo, int heuristica)
     {
         vector<Vertice*> solucao;
+        vector<Vertice*> grafo_vert  = grafo->cloneVert();
+        vector<Vertice*> grafo_vert2;
+        vector<Vertice*> grafo_vert3;
+
+       /* grafo->getVertices()[0]->setGrau(0.001);
+
+        imprime(grafo->getVertices());
+        imprime(grafo_vert);
+        imprime(grafo_vert2);
+
+        grafo_vert[3]->setGrau(0.001);
+        cout<<"=============================================="<<endl;
+        imprime(grafo->getVertices());
+        imprime(grafo_vert);
+        imprime(grafo_vert2);
+
+        return grafo_vert2;*/
+
 
         //ordernar de acordo com a heuristica passada como parâmetro;
         Heuristica* h = new Heuristica(heuristica);
@@ -21,159 +39,143 @@ public:
         //capturar um elemento do vetor;
         //--> Gulosa:
         //A função checaVetor, basicamente analisa se o critério de parada foi satisifeito, ou seja, os graus estão zerados;
-        while(!checaVetor(grafo->getVertices()))
+        while(!checaVetor(grafo_vert))
         {
-            h->mergeSort(grafo->getVertices(), 0, grafo->getVertices().size(), heuristica);
+            grafo_vert = h->mergeSort(grafo_vert, heuristica);
             //captura um vértice e adiciona no conjunto solução
-            solucao.push_back(getVertexRandom(grafo));
+            solucao.push_back(getVertexRandom(grafo_vert));
         }
-        cout<<solucao.size()<<" peso: "<<calculaPeso(solucao)<<endl;
+        cout<<"============================================="<<endl;
+        cout<<"Guloso: "<<endl;
+        cout<<"Tamanho: "<<solucao.size()<<" peso: "<<calculaPeso(solucao)<<endl;
 
         //--> Gulosa Randomizada (10x cada):
         //Esta função captura os vértices com base na constante alfa pertencente ao conjunto {0.1,0.2,0.3,0.5}, e analisa no vetor a porcentagem dos primeiros elementos do vetor de acordo com o alfa.
 
-        while(!checaVetor(grafo->getVertices()))
-        {
-            solucao.push_back(getVertexRandom(grafo,0.1));
-        }
-        cout<<solucao.size()<<" peso: "<<calculaPeso(solucao)<<endl;
-
-        while(!checaVetor(grafo->getVertices()))
-        {
-            solucao.push_back(getVertexRandom(grafo,0.2));
-        }
-        cout<<solucao.size()<<" peso: "<<calculaPeso(solucao)<<endl;
-
-        while(!checaVetor(grafo->getVertices()))
-        {
-            solucao.push_back(getVertexRandom(grafo,0.3));
-        }
-        cout<<solucao.size()<<" peso: "<<calculaPeso(solucao)<<endl;
-
-        while(!checaVetor(grafo->getVertices()))
-        {
-            solucao.push_back(getVertexRandom(grafo,0.5));
-        }
-        cout<<solucao.size()<<" peso: "<<calculaPeso(solucao)<<endl;
-
-        //--> Gulosa Randomizada Reativa
-        //Nesta função é testado um vetor de alfa para todas as possibilidades, e conforme o algoritmo é processado são atribuídas probabilidades aos alfas para todos serem utilizados igualmente, além disso, são acumuladas as soluções a fim de analisar os melhores alfas encontrados.
-        vector<float> alpha;
-        for(float a = 0.1; a < 1.0 ; a = a + 0.1)
-        {
-            alpha.push_back(a);
-        }
-        int m = alpha.size();
-        vector<float> probabilidade;
-        for(int i=0; i<m; i++)
-        {
-            probabilidade.push_back(1/m);
-        }
-        vector<int> resultados;
-        for(int j=0; j<m; j++)
-        {
-            resultados.push_back(0);
-        }
-        vector<int> contador_alpha;
-        for(int j=0; j<m; j++)
-        {
-            contador_alpha.push_back(0);
+        cout<<"============================================="<<endl;
+        cout<<"Randomizado: "<<endl;
+        cout<<endl;
+        float alfa[4] = {0.1,0.2,0.3,0.5};
+        for(unsigned int w = 0; w < 4 ; w++){
+            //for(){ rodar 10x para cada alfa
+                grafo_vert2 = grafo->cloneVert();
+                maximo_vet = grafo_vert2.size();
+                solucao.erase(solucao.begin(), solucao.end());
+                while(!checaVetor(grafo_vert2))
+                {
+                    grafo_vert2 = h->mergeSort(grafo_vert2, heuristica);
+                    //captura um vértice e adiciona no conjunto solução
+                    solucao.push_back(getVertexRandom(grafo_vert2, alfa[w]));
+                }
+                //imprime(solucao);
+                cout<<"Tamanho: "<<solucao.size()<<" peso: "<<calculaPeso(solucao)<<endl;
         }
 
-        while(!checaVetor(grafo->getVertices()))
-        {
-            int posicao = intRandom(alpha.size());
-            float a = alpha[posicao];
-            solucao.push_back(getVertexRandom(grafo, a));
-            contador_alpha[posicao]++;
-            atualiza_probabilidades();
-            atualiza_resultados(solucao.size(), posicao, calculaPeso(solucao));
+        //Randomizado Reativo
+        cout<<"============================================="<<endl;
+        cout<<"Randomizado Reativo: "<<endl;
+        cout<<endl;
+
+        float alfaReactive[9] = {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9};
+        //float prob[9] = {1/9,1/9,1/9,1/9,1/9,1/9,1/9,1/9,1/9};
+        float solutionSize[9] = {0,0,0,0,0,0,0,0,0};
+        float solutionPeso[9] = {0,0,0,0,0,0,0,0,0};
+        float iterations[9] = {0,0,0,0,0,0,0,0,0};
+
+        for(unsigned int e = 0; e < 9 ; e++){
+            //laço para iterar cada alfa 5 vezes
+            for(unsigned int a = 0; a < 5 ; a++){
+                grafo_vert3 = grafo->cloneVert();
+                maximo_vet = grafo_vert3.size();
+                solucao.erase(solucao.begin(), solucao.end());
+                while(!checaVetor(grafo_vert3))
+                {
+                    grafo_vert3 = h->mergeSort(grafo_vert3, heuristica);
+                    //captura um vértice e adiciona no conjunto solução
+                    solucao.push_back(getVertexRandom(grafo_vert3, alfaReactive[e]));
+                }
+                solutionSize[e] += solucao.size();
+                iterations[e] += 1;
+                solutionPeso[e] += calculaPeso(solucao);
+            }
+            int tamanho = solutionSize[e] / iterations[e];
+            int peso = solutionPeso[e] / iterations[e];
+
+            cout<<"Tamanho: "<<tamanho<<" peso: "<<peso<<endl;
         }
 
         return solucao;
     }
 
-    Vertice* getVertexRandom(Grafo* grafo)
+    Vertice* getVertexRandom(vector<Vertice*> &grafo_vert)
     {
         //retirar esse elemento do grafo e inserir no conjunto solução E diminuir os graus da lista adj do mesmo
         Vertice* v = new Vertice();
-        v = grafo->getVertices()[0];
+        v = grafo_vert[0];
 
         //diminui o Grau de todos os vértices adjacentes ao vértice escolhido
 
         for(unsigned int i=0; i < v->getAdjacents().size(); i++)
         {
+            for(unsigned int q = 0; q < grafo_vert.size(); q++){
+                if(v->getAdjacents()[i] == grafo_vert[q]->getId()){
 
-            grafo->getVertices()[(v->getAdjacents()[i]-1)]->setGrau(grafo->getVertices()[(v->getAdjacents()[i]-1)]->getGrau()-1);
-
-            //Caso o grau de algum dos vértices seja zerado, então iremos remover ele do conjunto solução;
-
-            if(grafo->getVertices()[(v->getAdjacents()[i]-1)]->getGrau() == 0)
-            {
-                for ( vector<Vertice*>::iterator it= grafo->getVertices().begin(); it != grafo->getVertices().end();)
-                {
-                    if(*it == grafo->getVertices()[(v->getAdjacents()[i]-1)])
+                    grafo_vert[q]->setGrau( grafo_vert[q]->getGrau() - 1);
+                    //Caso o grau de algum dos vértices seja zerado, então iremos remover ele do conjunto solução;
+                    if(grafo_vert[q]->getGrau() < 1)
                     {
-                        grafo->getVertices().erase(it);
-                    }
-                    else
-                    {
-                        ++it;
+                        grafo_vert[q]->setGrau(0.001);
                     }
                 }
             }
         }
 
-        grafo->getVertices().erase(grafo->getVertices().begin());
+        grafo_vert[0]->setGrau(0.001);
         return v;
     }
 
-    Vertice* getVertexRandom(Grafo* grafo, float alfa)
+    Vertice* getVertexRandom(vector<Vertice*> &grafo_vert, float alfa)
     {
-        //retirar esse elemento do grafo e inserir no conjunto solução E diminuir os graus da lista adj do mesmo
+       //retirar esse elemento do grafo e inserir no conjunto solução E diminuir os graus da lista adj do mesmo
         Vertice* v = new Vertice();
-
         //a posição no vetor será dada de acordo com o tamanho do vetor vezes a porcentagem do alfa, então iremos capturar entre esses valores.
 
-        int posicao = intRandom(grafo->getVertices().size() * alfa);
-        v = grafo->getVertices()[posicao];
+        int posicao = xrandomRange(0 , getRange(grafo_vert) * alfa);
+        v = grafo_vert[posicao];
 
         //diminui o Grau de todos os vértices adjacentes ao vértice escolhido
 
         for(unsigned int i=0; i < v->getAdjacents().size(); i++)
         {
+            for(unsigned int q = 0; q < grafo_vert.size(); q++){
+                if(v->getAdjacents()[i] == grafo_vert[q]->getId()){
 
-            grafo->getVertices()[(v->getAdjacents()[i]-1)]->setGrau(grafo->getVertices()[(v->getAdjacents()[i]-1)]->getGrau()-1);
-
-            //Caso o grau de algum dos vértices seja zerado, então iremos remover ele do conjunto solução;
-
-            if(grafo->getVertices()[(v->getAdjacents()[i]-1)]->getGrau() == 0)
-            {
-                for ( vector<Vertice*>::iterator it= grafo->getVertices().begin(); it != grafo->getVertices().end();)
-                {
-                    if(*it == grafo->getVertices()[(v->getAdjacents()[i]-1)])
-                    {
-                        grafo->getVertices().erase(it);
-                    }
-                    else
-                    {
-                        ++it;
+                    if(grafo_vert[q]->getGrau() >= 1){
+                        grafo_vert[q]->setGrau( grafo_vert[q]->getGrau() - 1);
+                        //Caso o grau de algum dos vértices seja zerado, então iremos remover ele do conjunto solução;
+                        if(grafo_vert[q]->getGrau() < 1)
+                        {
+                            grafo_vert[q]->setGrau(0.001);
+                            maximo_vet--;
+                        }
                     }
                 }
             }
         }
 
-        grafo->getVertices().erase(grafo->getVertices().begin()+posicao);
+        grafo_vert[posicao]->setGrau(0.001);
+        maximo_vet--;
         return v;
     }
 
-    bool checaVetor(vector<Vertice*> vetor)
+    bool checaVetor(vector<Vertice*> &vetor)
     {
-        if(vetor.empty())
-        {
-            return true;
+        for(unsigned int i=0; i<vetor.size();i++){
+            if(vetor[i]->getGrau() >= 1){
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 
     void atualiza_probabilidades()
@@ -191,13 +193,35 @@ public:
     int calculaPeso(vector<Vertice*> sol){
         int peso = 0;
         for(unsigned int i = 0; i < sol.size() ; i++){
-            peso = sol[i]->getPeso();
+            peso += sol[i]->getPeso();
         }
         return peso;
     }
 
-private:
+    int getRange(vector<Vertice*> grafo_vert){
+        for (unsigned int k = 0; k < grafo_vert.size(); k++){
+                //cout<<k<<" grau: "<<grafo_vert[k]->getGrau()<<endl;
+            if(grafo_vert[k]->getGrau() < 1.0){
+                return k;
+            }
+        }
+        return grafo_vert.size();
+    }
 
+    void imprime(vector<Vertice*> vetor){
+        for(unsigned int u = 0; u < vetor.size(); u++){
+            cout<<"posição vetor: "<<u<<endl;
+            cout<<"Peso: "<<vetor[u]->getPeso()<<endl;
+            cout<<"Grau: "<<vetor[u]->getGrau()<<endl;
+            cout<<"ID: "<<vetor[u]->getId()<<endl;
+            cout<<"--------------------------"<<endl;
+        }
+    }
+
+
+
+private:
+    int maximo_vet;
     vector<Vertice*> vertexCover;
 };
 

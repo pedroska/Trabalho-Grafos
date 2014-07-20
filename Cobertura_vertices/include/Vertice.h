@@ -42,6 +42,10 @@ public:
         return adjacents;
     }
 
+    void setAdjacents(vector<int> adj){
+         adjacents = adj;
+    }
+
     void add_adjacente(int* value)
     {
         adjacents.push_back(*value);

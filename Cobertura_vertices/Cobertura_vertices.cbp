@@ -34,10 +34,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Cover.h" />
 		<Unit filename="include/Grafo.h" />
 		<Unit filename="include/Heuristica.h" />
 		<Unit filename="include/Leitor.h" />
-		<Unit filename="include/PLS.h" />
 		<Unit filename="include/StringUtils.h" />
 		<Unit filename="include/Vertice.h" />
 		<Unit filename="include/util.h" />

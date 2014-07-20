@@ -51,18 +51,19 @@
 
 1404433320 /home/pedro/Downloads/debian-stable/amd64/Trabalho-Grafos/Cobertura_vertices/include/StringUtils.h
 
-1405301410 source:/home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/main.cpp
+1405828273 source:/home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/main.cpp
 	<iostream>
 	"include/Grafo.h"
 	"include/Leitor.h"
 	"Cover.h"
+	"util.h"
 
-1405300089 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Grafo.h
+1405820742 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Grafo.h
 	"Vertice.h"
 	<vector>
 	<algorithm>
 
-1405300089 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Vertice.h
+1405817998 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Vertice.h
 	<vector>
 	<stdio.h>
 
@@ -84,7 +85,7 @@
 	"util.h"
 	<vector>
 
-1405300119 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Heuristica.h
+1405828248 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Heuristica.h
 	<vector>
 	"Grafo.h"
 	"Vertice.h"
@@ -106,7 +107,7 @@
 	<vector>
 	<iostream>
 
-1405302493 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Cover.h
+1405824807 /home/pedro/Documentos/Faculdade/Trabalho-Grafos/Cobertura_vertices/include/Cover.h
 	"Heuristica.h"
 	"Grafo.h"
 	"util.h"

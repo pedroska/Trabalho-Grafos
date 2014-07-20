@@ -31,6 +31,23 @@ public:
         }
     }
 
+    vector<Vertice*> cloneVert(){
+        vector<Vertice*> aux;
+        vector<Vertice*> nos = getVertices();
+        aux.reserve(nos.size());
+
+        for(unsigned int i = 0; i < nos.size(); i++){
+
+            Vertice* v = new Vertice();
+            v->setGrau(nos[i]->getGrau());
+            v->setId(nos[i]->getId());
+            v->setPeso(nos[i]->getPeso());
+            v->setAdjacents(nos[i]->getAdjacents());
+            aux.push_back(v);
+        }
+        return aux;
+    }
+
 private:
     vector<Vertice*> vertices;
 };
