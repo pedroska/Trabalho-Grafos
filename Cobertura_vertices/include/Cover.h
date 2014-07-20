@@ -57,7 +57,8 @@ public:
         cout<<endl;
         float alfa[4] = {0.1,0.2,0.3,0.5};
         for(unsigned int w = 0; w < 4 ; w++){
-            //for(){ rodar 10x para cada alfa
+            //Rodar 10 vezes para cada alfa
+            for(int f = 0; f < 10; f++){
                 grafo_vert2 = grafo->cloneVert();
                 maximo_vet = grafo_vert2.size();
                 solucao.erase(solucao.begin(), solucao.end());
@@ -69,6 +70,7 @@ public:
                 }
                 //imprime(solucao);
                 cout<<"Tamanho: "<<solucao.size()<<" peso: "<<calculaPeso(solucao)<<endl;
+            }
         }
 
         //Randomizado Reativo
@@ -76,8 +78,14 @@ public:
         cout<<"Randomizado Reativo: "<<endl;
         cout<<endl;
 
+        float bestPeso = 0;
+        //float bestAlfa = 0;
+
+        int tamanho;
+        int peso;
+
         float alfaReactive[9] = {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9};
-        //float prob[9] = {1/9,1/9,1/9,1/9,1/9,1/9,1/9,1/9,1/9};
+        int prioritarios[3] = {0,1,2};
         float solutionSize[9] = {0,0,0,0,0,0,0,0,0};
         float solutionPeso[9] = {0,0,0,0,0,0,0,0,0};
         float iterations[9] = {0,0,0,0,0,0,0,0,0};
@@ -94,17 +102,103 @@ public:
                     //captura um vértice e adiciona no conjunto solução
                     solucao.push_back(getVertexRandom(grafo_vert3, alfaReactive[e]));
                 }
+
+                float p = calculaPeso(solucao);
+
                 solutionSize[e] += solucao.size();
                 iterations[e] += 1;
-                solutionPeso[e] += calculaPeso(solucao);
-            }
-            int tamanho = solutionSize[e] / iterations[e];
-            int peso = solutionPeso[e] / iterations[e];
+                solutionPeso[e] += p;
 
+                //if(solucao.size() < bestTamanho) bestTamanho = solucao.size();
+                if(p < bestPeso){
+                    bestPeso = p;
+                    //bestAlfa = alfaReactive[e];
+                }
+            }
+            tamanho = solutionSize[e] / iterations[e];
+            peso = solutionPeso[e] / iterations[e];
             cout<<"Tamanho: "<<tamanho<<" peso: "<<peso<<endl;
         }
 
+        int maiorPeso = pegaMaior(solutionPeso[prioritarios[0]], solutionPeso[prioritarios[1]], solutionPeso[prioritarios[2]]);
+
+        for(unsigned int y = 3; y < 9; y++){
+            if((solutionPeso[y] / iterations[y]) < (solutionPeso[maiorPeso] / iterations[maiorPeso])){
+                    prioritarios[maiorPeso] = y;
+                    maiorPeso = pegaMaior(solutionPeso[prioritarios[0]], solutionPeso[prioritarios[1]], solutionPeso[prioritarios[2]]);
+            }
+        }
+
+        int x1;
+        int x2;
+        int x3 = pegaMaior(solutionPeso[prioritarios[0]], solutionPeso[prioritarios[1]], solutionPeso[prioritarios[2]]);
+
+        if(prioritarios[0] == x3){
+            x1 = prioritarios[1];
+            x2 = prioritarios[2];
+        }else if(prioritarios[1] == x3){
+            x1 = prioritarios[0];
+            x2 = prioritarios[2];
+        }else{
+            x1 = prioritarios[0];
+            x2 = prioritarios[1];
+        }
+        if(solutionPeso[x1] < solutionPeso[x2]){
+            prioritarios[0] = x1;
+            prioritarios[1] = x2;
+        }else{
+            prioritarios[0] = x2;
+            prioritarios[1] = x1;
+        }
+        prioritarios[2] = x3;
+
+        for(unsigned int a = 0; a < 3 ; a++){
+            int indice = prioritarios[a];
+            for(unsigned int itera = 0; itera < (4 - a); itera++){
+                grafo_vert3 = grafo->cloneVert();
+                maximo_vet = grafo_vert3.size();
+                solucao.erase(solucao.begin(), solucao.end());
+                while(!checaVetor(grafo_vert3))
+                {
+                    grafo_vert3 = h->mergeSort(grafo_vert3, heuristica);
+                    //captura um vértice e adiciona no conjunto solução
+                    solucao.push_back(getVertexRandom(grafo_vert3, alfaReactive[indice]));
+                }
+
+                float p = calculaPeso(solucao);
+
+                solutionSize[indice] += solucao.size();
+                iterations[indice] += 1;
+                solutionPeso[indice] += p;
+
+                //if(solucao.size() < bestTamanho) bestTamanho = solucao.size();
+                if(p < bestPeso){
+                    bestPeso = p;
+                    //bestAlfa = alfaReactive[indice];
+                }
+            }
+
+            tamanho = solutionSize[indice] / iterations[indice];
+            peso = solutionPeso[indice] / iterations[indice];
+
+            cout<<"Tamanho: "<<tamanho<<" peso: "<<peso<<" alfa: "<<alfaReactive[indice]<<endl;
+        }
+        //cout<<"Melhor alfa: "<<bestAlfa<<" Melhor peso: "<<bestPeso<<endl;
         return solucao;
+    }
+
+    int pegaMaior(int peso1, int peso2, int peso3){
+        if(peso1 > peso2){
+                if(peso1 > peso2){
+                    return 0;
+                }else{
+                    return 2;
+                }
+            }else if(peso2 > peso3){
+                return 1;
+            }else{
+                return 2;
+            }
     }
 
     Vertice* getVertexRandom(vector<Vertice*> &grafo_vert)
